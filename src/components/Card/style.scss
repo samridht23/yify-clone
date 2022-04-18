@@ -1,0 +1,31 @@
+.main-card {
+  .card {
+    .card-img img {
+      cursor: pointer;
+      border: 5px solid white;
+      border-radius: 10px;
+      transition-duration: 0.3s;
+    }
+    .card-img img:hover {
+      border: 5px solid #75c74e;
+    }
+    .card-title {
+      padding-top: 5px;
+      a {
+        color: white;
+        letter-spacing: -0.03em;
+        font-weight: bold;
+        text-decoration: none;
+        transition-duration: 0.5s;
+        font-family: "arimo", sans-serif;
+      }
+      a:hover {
+        color: #919191;
+      }
+    }
+    .card-desc {
+      font-size: 15px;
+      color: #919191;
+    }
+  }
+}
