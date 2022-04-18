@@ -1,9 +1,11 @@
 import React from "react";
+import { useState } from "react";
 import "./style.scss";
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 
 const Navbar = () => {
+  const [navbutton, setNavbutton] = useState(false);
   return (
     <>
       <div className="navbar">
@@ -22,7 +24,7 @@ const Navbar = () => {
             </button>
           </div>
         </div>
-        <div className="right">
+        <div className="right" id="hidden">
           <ul>
             <li>
               <Link to="/">Home</Link>
