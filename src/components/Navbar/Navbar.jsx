@@ -5,7 +5,11 @@ import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 
 const Navbar = () => {
-  const [navbutton, setNavbutton] = useState(false);
+  const [navbutton, setNavbutton] = useState(true);
+
+  const menubutton = () => {
+    setNavbutton(!navbutton);
+  };
   return (
     <>
       <div className="navbar">
@@ -19,12 +23,12 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="togglebutton">
-            <button>
+            <button onClick={menubutton}>
               <MenuIcon />
             </button>
           </div>
         </div>
-        <div className="right" id="hidden">
+        <div className="right" id={navbutton ? "hidden" : "show"}>
           <ul>
             <li>
               <Link to="/">Home</Link>

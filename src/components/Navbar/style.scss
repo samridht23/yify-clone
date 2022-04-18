@@ -69,6 +69,7 @@
       .togglebutton {
         padding-right: 20px;
         button {
+          cursor: pointer;
           display: block;
           background: transparent;
           border: none;
@@ -76,12 +77,15 @@
         }
       }
     }
-    .right {
-      background-color: white;
+    #hidden {
+      display: none;
+    }
+    #show {
+      transition: 0.5s;
       display: flex;
       justify-content: flex-start;
       margin-right: 0px;
-      margin-top: 5px;
+      margin-top: 4px;
       background-color: transparent;
       width: 100%;
       height: 100vh;
