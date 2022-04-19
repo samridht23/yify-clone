@@ -10,19 +10,17 @@
       border: 5px solid #75c74e;
     }
     .movie-title {
-      text-overflow: ellipsis;
+      width: 240px;
       padding-top: 5px;
       a {
-        display: block;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
         color: white;
-        font-weight: bold;
         text-decoration: none;
-        transition-duration: 0.5s;
         font-family: "arimo", sans-serif;
         font-size: 15.2px;
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
       a:hover {
         color: #919191;
@@ -42,14 +40,23 @@
     }
     .movie-title {
       a {
-        display: block;
+        font-size: 13.6px;
         white-space: nowrap;
+        display: block;
         overflow: hidden;
         text-overflow: ellipsis;
-        font-size: 13.6px;
       }
       .movie-year {
         font-size: 10px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 770px) {
+  .main-card {
+    .card {
+      .movie-title {
+        width: 140px;
       }
     }
   }
