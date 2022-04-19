@@ -3,11 +3,28 @@
   padding-top: 70px;
   height: 100%;
   .movie-grid {
+    padding-left: 300px;
+    padding-right: 300px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     .card {
       margin: 10px;
+    }
+  }
+}
+@media screen and (max-width: 1024px) {
+  .main-body {
+    .movie-grid {
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+  }
+}
+@media screen and (max-width: 770px) {
+  .main-body {
+    .movie-grid {
+      padding: 20px;
     }
   }
 }
