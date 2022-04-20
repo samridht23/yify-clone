@@ -13,6 +13,14 @@
     }
   }
 }
+@media screen and (max-width: 1624px) {
+  .main-body {
+    .movie-grid {
+      padding-left: 70px;
+      padding-right: 70px;
+    }
+  }
+}
 @media screen and (max-width: 1024px) {
   .main-body {
     .movie-grid {
