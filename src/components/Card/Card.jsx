@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.scss";
+import { Link } from "react-router-dom";
 
 const Card = (props) => {
   return (
@@ -7,10 +8,12 @@ const Card = (props) => {
       <div className="main-card">
         <div className="card">
           <div className="movie-img">
-            <img src={props.medium_cover_image} alt="movie-poster" />
+            <Link to="/MoviePage">
+              <img src={props.medium_cover_image} alt="movie-poster" />
+            </Link>
           </div>
           <div className="movie-title">
-            <a href="#">{props.title}</a>
+            <Link to="/MoviePage">{props.title}</Link>
           </div>{" "}
           {/*use react router Link to route link*/}
           <div className="movie-year">{props.year}</div>
