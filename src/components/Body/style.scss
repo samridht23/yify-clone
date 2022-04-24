@@ -1,20 +1,39 @@
 .main-body {
   background-color: #282727;
-  padding-top: 50px;
+  padding-top: 70px;
+  padding-bottom: 30px;
   height: 100%;
   .movie-grid {
+    padding-left: 300px;
+    padding-right: 300px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     .card {
-      padding: 10px;
+      margin: 10px;
     }
   }
 }
-@media only screen and (min-width: 1000px) {
+@media screen and (max-width: 1624px) {
   .main-body {
-    padding-top: 50px;
-    padding-left: 300px;
-    padding-right: 300px;
+    .movie-grid {
+      padding-left: 70px;
+      padding-right: 70px;
+    }
+  }
+}
+@media screen and (max-width: 1024px) {
+  .main-body {
+    .movie-grid {
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+  }
+}
+@media screen and (max-width: 770px) {
+  .main-body {
+    .movie-grid {
+      padding: 20px;
+    }
   }
 }

@@ -1,31 +1,63 @@
 .main-card {
   .card {
-    .card-img img {
+    .movie-img img {
       cursor: pointer;
       border: 5px solid white;
       border-radius: 10px;
       transition-duration: 0.3s;
     }
-    .card-img img:hover {
+    .movie-img img:hover {
       border: 5px solid #75c74e;
     }
-    .card-title {
+    .movie-title {
+      width: 240px;
       padding-top: 5px;
       a {
         color: white;
-        letter-spacing: -0.03em;
-        font-weight: bold;
         text-decoration: none;
-        transition-duration: 0.5s;
         font-family: "arimo", sans-serif;
+        font-size: 15.2px;
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
       a:hover {
         color: #919191;
       }
     }
-    .card-desc {
-      font-size: 15px;
+    .movie-year {
+      font-size: 14px;
       color: #919191;
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    .card {
+      width: 140px;
+      .movie-img img {
+        width: 140px;
+      }
+    }
+    .movie-title {
+      a {
+        font-size: 13.6px;
+        white-space: nowrap;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .movie-year {
+        font-size: 10px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1024px) {
+  .main-card {
+    .card {
+      .movie-title {
+        width: 140px;
+      }
     }
   }
 }
