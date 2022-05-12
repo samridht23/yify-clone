@@ -8,14 +8,13 @@ const Card = (props) => {
       <div className="main-card">
         <div className="card">
           <div className="movie-img">
-            <Link to="/MoviePage">
+            <Link to={`/movie/${props.movie_id}`}>
               <img src={props.medium_cover_image} alt="movie-poster" />
             </Link>
           </div>
           <div className="movie-title">
-            <Link to="/MoviePage">{props.title}</Link>
+            <Link to={`movie/${props.movie_id}`}>{props.title}</Link>
           </div>{" "}
-          {/*use react router Link to route link*/}
           <div className="movie-year">{props.year}</div>
         </div>
       </div>

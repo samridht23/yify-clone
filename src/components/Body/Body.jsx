@@ -12,7 +12,6 @@ const Body = () => {
     axios
       .get(baseURL)
       .then((res) => {
-        console.log(res.data.data.movies);
         setMoviedata(res.data.data.movies);
       })
       .catch((err) => {
@@ -32,6 +31,7 @@ const Body = () => {
               medium_cover_image={moviedata.medium_cover_image}
               title={moviedata.title}
               year={moviedata.year}
+              movie_id={moviedata.id}
             />
           ))}
         </div>
