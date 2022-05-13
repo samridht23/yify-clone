@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
 import "./style.scss";
 
 const movie_info_url = "https://yts.mx/api/v2/movie_details.json";
@@ -35,12 +36,21 @@ const Movie = () => {
         <div class="main_body">
           <div class="movie_info_top">
             <div class="movie_poster">
-              <img src={moviedata.medium_cover_image} alt="movie_poster" />
+              <img src={moviedata.large_cover_image} alt="movie_poster" />
             </div>
             <div class="movie_info">
-              <h2>{moviedata.title}</h2>
+              <h1>{moviedata.title}</h1>
+              <h2>{moviedata.year}</h2>
+              <h2>{moviedata.genres?.map((element) => element + " / ")}</h2>
+              <div class="like-row">
+                <span class="material-symbols-outlined">favorite</span>
+                <div id="like_count">{moviedata.like_count}</div>
+              </div>
             </div>
           </div>
+        </div>
+        <div class="footer">
+          <Footer />
         </div>
       </div>
     </>

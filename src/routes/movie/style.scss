@@ -1,10 +1,63 @@
+$base-color: #282727;
 .main {
+  background-color: $base-color;
   .main_body {
     padding-top: 100px;
     .movie_info_top {
       display: flex;
       margin-left: 380px;
       margin-right: 380px;
+      .movie_poster {
+        img {
+          border: 5px solid white;
+          border-radius: 10px;
+          width: 262.5px;
+        }
+      }
+      .movie_info {
+        margin-left: 31px;
+        color: white;
+        font-family: "arimo", sans-serif;
+        h1 {
+          margin-bottom: 20px;
+          font-size: 40px;
+        }
+        h2 {
+          margin-bottom: 10px;
+          font-size: 20px;
+        }
+        .like-row {
+          display: flex;
+          align-items: center;
+          span {
+            color: #6ac045;
+          }
+          #like_count {
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    .main_body {
+      .movie_info_top {
+        margin-left: 110px;
+        margin-right: 110px;
+        .movie_poster {
+          img {
+            width: 185px;
+          }
+        }
+        .movie_info {
+          h1 {
+            font-size: 25px;
+          }
+          h2 {
+            font-size: 17px;
+          }
+        }
+      }
     }
   }
 }
