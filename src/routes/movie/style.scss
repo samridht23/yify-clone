@@ -26,15 +26,31 @@ $base-color: #282727;
           margin-bottom: 10px;
           font-size: 20px;
         }
-        .like-row {
+        .like_row {
           display: flex;
           align-items: center;
           span {
             color: #6ac045;
           }
           #like_count {
-            margin-left: 10px;
+            margin-left: 37px;
           }
+        }
+        .rating_row {
+          display: flex;
+          align-items: center;
+          margin-top: 5px;
+          .imdb_rating {
+            margin-left: 20px;
+          }
+        }
+        .tor_link {
+          margin-top: 5px;
+          display: flex;
+        }
+        span.web_info {
+          font-size: 75%;
+          color: #9c969c;
         }
       }
     }
