@@ -98,7 +98,20 @@ const Movie = () => {
               </span>
             </div>
           </div>
-          <div class="movie_sub_info">hi</div>
+          <div class="movie_sub_info">
+            <div class="plot_summary">
+              <h2>Plot Summary</h2>
+              <p>{moviedata.description_full}</p>
+            </div>
+            <div class="crew">
+              <div class="director">
+                <h2>Director</h2>
+              </div>
+              <div class="top_cast">
+                <h2>Top Cast</h2>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="footer">
           <Footer />

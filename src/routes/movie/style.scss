@@ -3,10 +3,10 @@ $base-color: #282727;
   background-color: $base-color;
   .main_body {
     padding-top: 100px;
+    margin-left: 380px;
+    margin-right: 380px;
     .movie_info_top {
       display: flex;
-      margin-left: 380px;
-      margin-right: 380px;
       .movie_poster {
         img {
           border: 5px solid white;
@@ -54,12 +54,27 @@ $base-color: #282727;
         }
       }
     }
+    .movie_sub_info {
+      margin-top: 40px;
+      display: flex;
+      .plot_summary {
+        h2 {
+          color: white;
+        }
+        p {
+          color: #9c969c;
+        }
+      }
+      .crew {
+        color: white;
+      }
+    }
   }
   @media screen and (max-width: 1024px) {
     .main_body {
+      margin-left: 110px;
+      margin-right: 110px;
       .movie_info_top {
-        margin-left: 110px;
-        margin-right: 110px;
         .movie_poster {
           img {
             width: 185px;
