@@ -6,6 +6,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import ImdbLogo from "../../assets/images/logo-imdb.svg";
 import TorLink from "../../components/TorLink/TorLink";
+import Cast from "../../components/Cast/Cast";
 import "./style.scss";
 
 const movie_info_url = "https://yts.mx/api/v2/movie_details.json";
@@ -14,8 +15,12 @@ const imdb_main_url = "https://www.imdb.com/title/";
 const Movie = () => {
   const params = useParams();
   const [moviedata, setMoviedata] = useState([]);
-  const [imdbdata, setimdbdata] = useState([]);
-  const main_movie_info_url = movie_info_url + "?movie_id=" + params.movie_id;
+  /*const [imdbdata, setimdbdata] = useState([]);*/
+  const main_movie_info_url =
+    movie_info_url +
+    "?movie_id=" +
+    params.movie_id +
+    "&with_images=true&with_cast=true";
 
   const fetchData = () => {
     axios
@@ -101,14 +106,20 @@ const Movie = () => {
           <div class="movie_sub_info">
             <div class="plot_summary">
               <h2>Plot Summary</h2>
-              <p>{moviedata.description_full}</p>
+              {console.log(moviedata.description_intro)}
+              <p>{moviedata.description_intro}</p>
             </div>
             <div class="crew">
-              <div class="director">
-                <h2>Director</h2>
-              </div>
               <div class="top_cast">
                 <h2>Top Cast</h2>
+                {moviedata.cast?.map((elements) => (
+                  <Cast
+                    cast_name={elements.name}
+                    cast_character_name={elements.character_name}
+                    cast_image={elements.url_small_image}
+                    cast_imdb_code={elements.imdb_code}
+                  />
+                ))}
               </div>
             </div>
           </div>
