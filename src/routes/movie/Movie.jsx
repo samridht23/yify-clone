@@ -67,6 +67,10 @@ const Movie = () => {
         </div>
         <div class="main_body">
           <div class="movie_info_top">
+            <div
+              class="background_image"
+              style={{ backgroundImage: `url(${moviedata.background_image})` }}
+            ></div>
             <div class="movie_poster">
               <img src={moviedata.large_cover_image} alt="movie_poster" />
             </div>
