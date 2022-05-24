@@ -59,28 +59,75 @@
       }
     }
     .movie_overview {
-      background: blur(2px);
+      margin: 1.5em;
       .movie_overview_info {
-        margin: 1.5em;
         h2 {
           font-size: 1em;
           color: white;
           font-weight: 100;
         }
-        h3 {
-          height: 4.5em;
-          overflow: scroll;
-          font-size: 0.9em;
-          color: white;
-          font-weight: 100;
-          margin-bottom: 0.5em;
-          margin-top: 1em;
+        .movie_description_info {
+          h3 {
+            height: 4.5em;
+            overflow: scroll;
+            font-size: 0.9em;
+            color: #919191;
+            font-weight: 100;
+            margin-bottom: 0.5em;
+            margin-top: 1em;
+          }
+          h4 {
+            font-size: 0.9em;
+            font-weight: 100;
+            color: white;
+          }
+          .description_container {
+            .description_sub_container {
+              h4 {
+                display: flex;
+                align-items: center;
+                h5 {
+                  font-size: 1em;
+                  font-weight: 100;
+                  display: flex;
+                  color: #919191;
+                  padding-left: 3px;
+                }
+              }
+              h5 {
+                font-size: 1em;
+                font-weight: 100;
+                color: #919191;
+              }
+            }
+          }
         }
-        h4 {
-          font-size: 0.9em;
+      }
+    }
+    .movie_screenshot_images {
+      margin: 1.5em;
+      .youtube_trailer {
+        iframe {
+          width: 100%;
+        }
+      }
+      .movie_images {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        img {
+          margin: 0.5em;
+          width: 48%;
+        }
+      }
+    }
+    .cast {
+      color: white;
+      margin: 1.5em;
+      .top_cast {
+        h2 {
+          font-size: 1.3em;
           font-weight: 100;
-          color: white;
-          margin-top: 0.5em;
         }
       }
     }

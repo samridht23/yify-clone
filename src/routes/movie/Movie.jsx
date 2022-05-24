@@ -143,6 +143,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import ImdbLogo from "../../assets/images/logo-imdb.svg";
 import TorLink from "../../components/TorLink/TorLink";
+import Cast from "../../components/Cast/Cast";
 import "./style.scss";
 
 const movie_info_url = "https://yts.mx/api/v2/movie_details.json";
@@ -178,6 +179,8 @@ const Movie = () => {
     var rminutes = Math.round(minutes);
     return " " + rhours + "h " + rminutes + "min";
   };
+  const yt_code = moviedata.yt_trailer_code;
+  const yt_url = `https://www.youtube.com/embed/${yt_code}`;
   return (
     <div>
       <div class="main">
@@ -226,15 +229,75 @@ const Movie = () => {
           <div class="movie_overview">
             <div class="movie_overview_info">
               <h2>Overview:</h2>
-              <h3>{moviedata.description_full}</h3>
-              <h4>Release Year : {moviedata.year}</h4>
-              <h4>Imdb Rating : {moviedata.rating}</h4>
-              <h4>Duration : {movieDuration(moviedata.runtime)}</h4>
-              <h4>Language : {moviedata.language}</h4>
-              <h4>
-                Genres : {moviedata.genres?.map((element) => element + " , ")}
-              </h4>
-              <h4>Downloads : {moviedata.download_count}</h4>
+              <div class="movie_description_info">
+                <h3>{moviedata.description_full}</h3>
+                <div class="description_container">
+                  <div class="description_sub_container">
+                    <h4>
+                      Release Year : <h5>{moviedata.year}</h5>
+                    </h4>
+                  </div>
+                  <div class="description_sub_container">
+                    <h4>
+                      Imdb Rating : <h5>{moviedata.rating}</h5>
+                    </h4>
+                  </div>
+                  <div class="description_sub_container">
+                    <h4>
+                      Duration : <h5>{movieDuration(moviedata.runtime)}</h5>
+                    </h4>
+                  </div>
+                  <div class="description_sub_container">
+                    <h4>
+                      Language : <h5>{moviedata.language}</h5>
+                    </h4>
+                  </div>
+                  <div class="description_sub_container">
+                    <h4>Genres : </h4>
+                    <h5>
+                      {moviedata.genres?.map((element) => element + " , ")}
+                    </h5>
+                  </div>
+                  <div class="description_sub_container">
+                    <h4>
+                      Downloads : <h5>{moviedata.download_count}</h5>
+                    </h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="movie_screenshot_images">
+            <div class="youtube_trailer">
+              <iframe
+                src={yt_url}
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+              <div class="movie_images">
+                <img src={moviedata.large_screenshot_image1} alt="" />
+                <img src={moviedata.large_screenshot_image2} alt="" />
+              </div>
+            </div>
+          </div>
+          <div class="cast">
+            <div class="top_cast">
+              <h2>Top Cast</h2>
+              {moviedata.cast?.map((elements) => (
+                <Cast
+                  cast_name={elements.name}
+                  cast_character_name={elements.character_name}
+                  cast_image={elements.url_small_image}
+                  cast_imdb_code={elements.imdb_code}
+                />
+              ))}
+            </div>
+          </div>
+          <div class="download_specs">
+            <div class="download_info">
+              <h2>Download Info</h2>
             </div>
           </div>
         </div>

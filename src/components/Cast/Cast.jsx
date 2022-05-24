@@ -13,9 +13,8 @@ const Cast = (props) => {
             <div class="cast_info">
               <div class="cast_name">
                 <a href={"https://www.imdb.com/name/nm" + props.cast_imdb_code}>
-                  {props.cast_name}
+                  <h2>{props.cast_name}</h2>
                 </a>{" "}
-                as {props.cast_character_name}
               </div>
             </div>
           </div>
