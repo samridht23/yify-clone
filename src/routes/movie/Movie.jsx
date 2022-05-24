@@ -1,4 +1,4 @@
-import React from "react";
+/*import React from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -15,7 +15,7 @@ const imdb_main_url = "https://www.imdb.com/title/";
 const Movie = () => {
   const params = useParams();
   const [moviedata, setMoviedata] = useState([]);
-  /*const [imdbdata, setimdbdata] = useState([]);*/
+  const [imdbdata, setimdbdata] = useState([]);
   const main_movie_info_url =
     movie_info_url +
     "?movie_id=" +
@@ -35,7 +35,6 @@ const Movie = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  /*implement env in API key
   const options = {
     method: "GET",
     url: "https://movie-details1.p.rapidapi.com/imdb_api/movie",
@@ -58,7 +57,6 @@ const Movie = () => {
   useEffect(() => {
     imdbFetchData();
   }, []);
-  */
   return (
     <>
       <div class="main">
@@ -133,6 +131,118 @@ const Movie = () => {
         </div>
       </div>
     </>
+  );
+};
+
+export default Movie;
+*/
+import { React, useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
+import ImdbLogo from "../../assets/images/logo-imdb.svg";
+import TorLink from "../../components/TorLink/TorLink";
+import "./style.scss";
+
+const movie_info_url = "https://yts.mx/api/v2/movie_details.json";
+const imdb_main_url = "https://www.imdb.com/title/";
+
+const Movie = () => {
+  const params = useParams();
+  const [moviedata, setMoviedata] = useState([]);
+  const main_movie_info_url =
+    movie_info_url +
+    "?movie_id=" +
+    params.movie_id +
+    "&with_images=true&with_cast=true";
+
+  const fetchData = () => {
+    axios
+      .get(main_movie_info_url)
+      .then((res) => {
+        setMoviedata(res.data.data.movie);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const movieDuration = (runtime) => {
+    var num = runtime;
+    var hours = num / 60;
+    var rhours = Math.floor(hours);
+    var minutes = (hours - rhours) * 60;
+    var rminutes = Math.round(minutes);
+    return " " + rhours + "h " + rminutes + "min";
+  };
+  return (
+    <div>
+      <div class="main">
+        <div class="movie_navbar">
+          <Navbar />
+        </div>
+        <div class="main_body">
+          <div
+            class="movie_info_top"
+            style={{
+              backgroundImage: `url(${moviedata.background_image})`,
+            }}
+          >
+            <div class="movie_info">
+              <div class="movie_info_poster">
+                <img src={moviedata.large_cover_image} alt="" />
+              </div>
+              <div class="movie_info_title">
+                <h2>{moviedata.title}</h2>
+                <h3>
+                  {moviedata.year} | {moviedata.language} |
+                  {movieDuration(moviedata.runtime)}
+                </h3>
+              </div>
+              <div class="movie_rating">
+                <a href={imdb_main_url + moviedata.imdb_code}>
+                  <img src={ImdbLogo} alt="imdb_logo" />
+                </a>
+                <div class="imdb_rating">
+                  <h4>{moviedata.rating}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="movie_downlaod">
+            <div class="movie_download_link">
+              {moviedata.torrents?.map((elements) => (
+                <TorLink
+                  tor_url={elements.url}
+                  tor_quality={elements.quality}
+                  tor_type={elements.type}
+                />
+              ))}
+            </div>
+          </div>
+          <div class="movie_overview">
+            <div class="movie_overview_info">
+              <h2>Overview:</h2>
+              <h3>{moviedata.description_full}</h3>
+              <h4>Release Year : {moviedata.year}</h4>
+              <h4>Imdb Rating : {moviedata.rating}</h4>
+              <h4>Duration : {movieDuration(moviedata.runtime)}</h4>
+              <h4>Language : {moviedata.language}</h4>
+              <h4>
+                Genres : {moviedata.genres?.map((element) => element + " , ")}
+              </h4>
+              <h4>Downloads : {moviedata.download_count}</h4>
+            </div>
+          </div>
+        </div>
+        <div class="movie_footer">
+          <Footer />
+        </div>
+      </div>
+    </div>
   );
 };
 
