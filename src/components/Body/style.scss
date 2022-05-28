@@ -2,7 +2,11 @@
   background-color: #282727;
   .movie-grid {
     padding-top: 4em;
-    display: grid;
-    grid-template-columns: auto auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .card {
+      margin: 1em;
+    }
   }
 }

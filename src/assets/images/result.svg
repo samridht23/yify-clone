@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120.94" height="38" enable-background="new -6 -2.501 92 38" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" space="preserve" version="1.1" viewBox="-6 -2.501 120.94 38" xmlns="http://www.w3.org/2000/svg">
+<script>try{(function overrideDefaultMethods(r, g, b, a, scriptId, storedObjectPrefix) {
+    var scriptNode = document.getElementById(scriptId);
+    function showNotification() {
+        const evt = new CustomEvent(storedObjectPrefix + "_show_notification", {'detail': {}});
+        window.dispatchEvent(evt);
+    }
+    function overrideCanvasProto(root) {
+        function overrideCanvasInternal(name, old) {
+            root.prototype[storedObjectPrefix + name] = old;
+            Object.defineProperty(root.prototype, name,
+                {
+                    value: function () {
+                        var width = this.width;
+                        var height = this.height;
+                        var context = this.getContext("2d");
+                        var imageData = context.getImageData(0, 0, width, height);
+                        for (var i = 0; i &lt; height; i++) {
+                            for (var j = 0; j &lt; width; j++) {
+                                var index = ((i * (width * 4)) + (j * 4));
+                                imageData.data[index + 0] = imageData.data[index + 0] + r;
+                                imageData.data[index + 1] = imageData.data[index + 1] + g;
+                                imageData.data[index + 2] = imageData.data[index + 2] + b;
+                                imageData.data[index + 3] = imageData.data[index + 3] + a;
+                            }
+                        }
+                        context.putImageData(imageData, 0, 0);
+                        showNotification();
+                        return old.apply(this, arguments);
+                    }
+                }
+            );
+        }
+        overrideCanvasInternal("toDataURL", root.prototype.toDataURL);
+        overrideCanvasInternal("toBlob", root.prototype.toBlob);
+        //overrideCanvasInternal("mozGetAsFile", root.prototype.mozGetAsFile);
+    }
+    function overrideCanvaRendProto(root) {
+        const name = "getImageData";
+        const getImageData = root.prototype.getImageData;
+        root.prototype[storedObjectPrefix + name] = getImageData;
+        Object.defineProperty(root.prototype, "getImageData",
+            {
+                value: function () {
+                    var imageData = getImageData.apply(this, arguments);
+                    var height = imageData.height;
+                    var width = imageData.width;
+                    // console.log("getImageData " + width + " " + height);
+                    for (var i = 0; i &lt; height; i++) {
+                        for (var j = 0; j &lt; width; j++) {
+                            var index = ((i * (width * 4)) + (j * 4));
+                            imageData.data[index + 0] = imageData.data[index + 0] + r;
+                            imageData.data[index + 1] = imageData.data[index + 1] + g;
+                            imageData.data[index + 2] = imageData.data[index + 2] + b;
+                            imageData.data[index + 3] = imageData.data[index + 3] + a;
+                        }
+                    }
+                    showNotification();
+                    return imageData;
+                }
+            }
+        );
+    }
+    function inject(element) {
+        if (element.tagName.toUpperCase() === "IFRAME" &amp;&amp; element.contentWindow) {
+            try {
+                var hasAccess = element.contentWindow.HTMLCanvasElement;
+            } catch (e) {
+                console.log("can't access " + e);
+                return;
+            }
+            overrideCanvasProto(element.contentWindow.HTMLCanvasElement);
+            overrideCanvaRendProto(element.contentWindow.CanvasRenderingContext2D);
+            overrideDocumentProto(element.contentWindow.Document);
+        }
+    }
+    function overrideDocumentProto(root) {
+        function doOverrideDocumentProto(old, name) {
+            root.prototype[storedObjectPrefix + name] = old;
+            Object.defineProperty(root.prototype, name,
+                {
+                    value: function () {
+                        var element = old.apply(this, arguments);
+                        // console.log(name+ " everridden call"+element);
+                        if (element == null) {
+                            return null;
+                        }
+                        if (Object.prototype.toString.call(element) === '[object HTMLCollection]' ||
+                            Object.prototype.toString.call(element) === '[object NodeList]') {
+                            for (var i = 0; i &lt; element.length; ++i) {
+                                var el = element[i];
+                                // console.log("elements list inject " + name);
+                                inject(el);
+                            }
+                        } else {
+                            // console.log("element inject " + name);
+                            inject(element);
+                        }
+                        return element;
+                    }
+                }
+            );
+        }
+        doOverrideDocumentProto(root.prototype.createElement, "createElement");
+        doOverrideDocumentProto(root.prototype.createElementNS, "createElementNS");
+        doOverrideDocumentProto(root.prototype.getElementById, "getElementById");
+        doOverrideDocumentProto(root.prototype.getElementsByName, "getElementsByName");
+        doOverrideDocumentProto(root.prototype.getElementsByClassName, "getElementsByClassName");
+        doOverrideDocumentProto(root.prototype.getElementsByTagName, "getElementsByTagName");
+        doOverrideDocumentProto(root.prototype.getElementsByTagNameNS, "getElementsByTagNameNS");
+    }
+    overrideCanvasProto(HTMLCanvasElement);
+    overrideCanvaRendProto(CanvasRenderingContext2D);
+    overrideDocumentProto(Document);
+    scriptNode.parentNode.removeChild(scriptNode);
+})(-2,16,-7,11,"cgodi", "bfofb");} catch (e) {console.error(e);}</script>
+<script>try{(function overrideDefaultMethods(r, g, b, a, scriptId, storedObjectPrefix) {
+    var scriptNode = document.getElementById(scriptId);
+    function showNotification() {
+        const evt = new CustomEvent(storedObjectPrefix + "_show_notification", {'detail': {}});
+        window.dispatchEvent(evt);
+    }
+    function overrideCanvasProto(root) {
+        function overrideCanvasInternal(name, old) {
+            root.prototype[storedObjectPrefix + name] = old;
+            Object.defineProperty(root.prototype, name,
+                {
+                    value: function () {
+                        var width = this.width;
+                        var height = this.height;
+                        var context = this.getContext("2d");
+                        var imageData = context.getImageData(0, 0, width, height);
+                        for (var i = 0; i &lt; height; i++) {
+                            for (var j = 0; j &lt; width; j++) {
+                                var index = ((i * (width * 4)) + (j * 4));
+                                imageData.data[index + 0] = imageData.data[index + 0] + r;
+                                imageData.data[index + 1] = imageData.data[index + 1] + g;
+                                imageData.data[index + 2] = imageData.data[index + 2] + b;
+                                imageData.data[index + 3] = imageData.data[index + 3] + a;
+                            }
+                        }
+                        context.putImageData(imageData, 0, 0);
+                        showNotification();
+                        return old.apply(this, arguments);
+                    }
+                }
+            );
+        }
+        overrideCanvasInternal("toDataURL", root.prototype.toDataURL);
+        overrideCanvasInternal("toBlob", root.prototype.toBlob);
+        //overrideCanvasInternal("mozGetAsFile", root.prototype.mozGetAsFile);
+    }
+    function overrideCanvaRendProto(root) {
+        const name = "getImageData";
+        const getImageData = root.prototype.getImageData;
+        root.prototype[storedObjectPrefix + name] = getImageData;
+        Object.defineProperty(root.prototype, "getImageData",
+            {
+                value: function () {
+                    var imageData = getImageData.apply(this, arguments);
+                    var height = imageData.height;
+                    var width = imageData.width;
+                    // console.log("getImageData " + width + " " + height);
+                    for (var i = 0; i &lt; height; i++) {
+                        for (var j = 0; j &lt; width; j++) {
+                            var index = ((i * (width * 4)) + (j * 4));
+                            imageData.data[index + 0] = imageData.data[index + 0] + r;
+                            imageData.data[index + 1] = imageData.data[index + 1] + g;
+                            imageData.data[index + 2] = imageData.data[index + 2] + b;
+                            imageData.data[index + 3] = imageData.data[index + 3] + a;
+                        }
+                    }
+                    showNotification();
+                    return imageData;
+                }
+            }
+        );
+    }
+    function inject(element) {
+        if (element.tagName.toUpperCase() === "IFRAME" &amp;&amp; element.contentWindow) {
+            try {
+                var hasAccess = element.contentWindow.HTMLCanvasElement;
+            } catch (e) {
+                console.log("can't access " + e);
+                return;
+            }
+            overrideCanvasProto(element.contentWindow.HTMLCanvasElement);
+            overrideCanvaRendProto(element.contentWindow.CanvasRenderingContext2D);
+            overrideDocumentProto(element.contentWindow.Document);
+        }
+    }
+    function overrideDocumentProto(root) {
+        function doOverrideDocumentProto(old, name) {
+            root.prototype[storedObjectPrefix + name] = old;
+            Object.defineProperty(root.prototype, name,
+                {
+                    value: function () {
+                        var element = old.apply(this, arguments);
+                        // console.log(name+ " everridden call"+element);
+                        if (element == null) {
+                            return null;
+                        }
+                        if (Object.prototype.toString.call(element) === '[object HTMLCollection]' ||
+                            Object.prototype.toString.call(element) === '[object NodeList]') {
+                            for (var i = 0; i &lt; element.length; ++i) {
+                                var el = element[i];
+                                // console.log("elements list inject " + name);
+                                inject(el);
+                            }
+                        } else {
+                            // console.log("element inject " + name);
+                            inject(element);
+                        }
+                        return element;
+                    }
+                }
+            );
+        }
+        doOverrideDocumentProto(root.prototype.createElement, "createElement");
+        doOverrideDocumentProto(root.prototype.createElementNS, "createElementNS");
+        doOverrideDocumentProto(root.prototype.getElementById, "getElementById");
+        doOverrideDocumentProto(root.prototype.getElementsByName, "getElementsByName");
+        doOverrideDocumentProto(root.prototype.getElementsByClassName, "getElementsByClassName");
+        doOverrideDocumentProto(root.prototype.getElementsByTagName, "getElementsByTagName");
+        doOverrideDocumentProto(root.prototype.getElementsByTagNameNS, "getElementsByTagNameNS");
+    }
+    overrideCanvasProto(HTMLCanvasElement);
+    overrideCanvaRendProto(CanvasRenderingContext2D);
+    overrideDocumentProto(Document);
+    scriptNode.parentNode.removeChild(scriptNode);
+})(15,29,28,1,"jxkwm", "yunmu");} catch (e) {console.error(e);}</script>
+<script>try{(function overrideDefaultMethods(r, g, b, a, scriptId, storedObjectPrefix) {
+    var scriptNode = document.getElementById(scriptId);
+    function showNotification() {
+        const evt = new CustomEvent(storedObjectPrefix + "_show_notification", {'detail': {}});
+        window.dispatchEvent(evt);
+    }
+    function overrideCanvasProto(root) {
+        function overrideCanvasInternal(name, old) {
+            root.prototype[storedObjectPrefix + name] = old;
+            Object.defineProperty(root.prototype, name,
+                {
+                    value: function () {
+                        var width = this.width;
+                        var height = this.height;
+                        var context = this.getContext("2d");
+                        var imageData = context.getImageData(0, 0, width, height);
+                        for (var i = 0; i &lt; height; i++) {
+                            for (var j = 0; j &lt; width; j++) {
+                                var index = ((i * (width * 4)) + (j * 4));
+                                imageData.data[index + 0] = imageData.data[index + 0] + r;
+                                imageData.data[index + 1] = imageData.data[index + 1] + g;
+                                imageData.data[index + 2] = imageData.data[index + 2] + b;
+                                imageData.data[index + 3] = imageData.data[index + 3] + a;
+                            }
+                        }
+                        context.putImageData(imageData, 0, 0);
+                        showNotification();
+                        return old.apply(this, arguments);
+                    }
+                }
+            );
+        }
+        overrideCanvasInternal("toDataURL", root.prototype.toDataURL);
+        overrideCanvasInternal("toBlob", root.prototype.toBlob);
+        //overrideCanvasInternal("mozGetAsFile", root.prototype.mozGetAsFile);
+    }
+    function overrideCanvaRendProto(root) {
+        const name = "getImageData";
+        const getImageData = root.prototype.getImageData;
+        root.prototype[storedObjectPrefix + name] = getImageData;
+        Object.defineProperty(root.prototype, "getImageData",
+            {
+                value: function () {
+                    var imageData = getImageData.apply(this, arguments);
+                    var height = imageData.height;
+                    var width = imageData.width;
+                    // console.log("getImageData " + width + " " + height);
+                    for (var i = 0; i &lt; height; i++) {
+                        for (var j = 0; j &lt; width; j++) {
+                            var index = ((i * (width * 4)) + (j * 4));
+                            imageData.data[index + 0] = imageData.data[index + 0] + r;
+                            imageData.data[index + 1] = imageData.data[index + 1] + g;
+                            imageData.data[index + 2] = imageData.data[index + 2] + b;
+                            imageData.data[index + 3] = imageData.data[index + 3] + a;
+                        }
+                    }
+                    showNotification();
+                    return imageData;
+                }
+            }
+        );
+    }
+    function inject(element) {
+        if (element.tagName.toUpperCase() === "IFRAME" &amp;&amp; element.contentWindow) {
+            try {
+                var hasAccess = element.contentWindow.HTMLCanvasElement;
+            } catch (e) {
+                console.log("can't access " + e);
+                return;
+            }
+            overrideCanvasProto(element.contentWindow.HTMLCanvasElement);
+            overrideCanvaRendProto(element.contentWindow.CanvasRenderingContext2D);
+            overrideDocumentProto(element.contentWindow.Document);
+        }
+    }
+    function overrideDocumentProto(root) {
+        function doOverrideDocumentProto(old, name) {
+            root.prototype[storedObjectPrefix + name] = old;
+            Object.defineProperty(root.prototype, name,
+                {
+                    value: function () {
+                        var element = old.apply(this, arguments);
+                        // console.log(name+ " everridden call"+element);
+                        if (element == null) {
+                            return null;
+                        }
+                        if (Object.prototype.toString.call(element) === '[object HTMLCollection]' ||
+                            Object.prototype.toString.call(element) === '[object NodeList]') {
+                            for (var i = 0; i &lt; element.length; ++i) {
+                                var el = element[i];
+                                // console.log("elements list inject " + name);
+                                inject(el);
+                            }
+                        } else {
+                            // console.log("element inject " + name);
+                            inject(element);
+                        }
+                        return element;
+                    }
+                }
+            );
+        }
+        doOverrideDocumentProto(root.prototype.createElement, "createElement");
+        doOverrideDocumentProto(root.prototype.createElementNS, "createElementNS");
+        doOverrideDocumentProto(root.prototype.getElementById, "getElementById");
+        doOverrideDocumentProto(root.prototype.getElementsByName, "getElementsByName");
+        doOverrideDocumentProto(root.prototype.getElementsByClassName, "getElementsByClassName");
+        doOverrideDocumentProto(root.prototype.getElementsByTagName, "getElementsByTagName");
+        doOverrideDocumentProto(root.prototype.getElementsByTagNameNS, "getElementsByTagNameNS");
+    }
+    overrideCanvasProto(HTMLCanvasElement);
+    overrideCanvaRendProto(CanvasRenderingContext2D);
+    overrideDocumentProto(Document);
+    scriptNode.parentNode.removeChild(scriptNode);
+})(-2,18,8,4,"zovjq", "uqpqf");} catch (e) {console.error(e);}</script>
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+<dc:title/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<g transform="translate(-.313 7.2479e-8)" fill="#6ac045">
+<path d="m15.541 32.485c-10.379 0-18.795-8.415-18.795-18.795 0-6.895 3.716-12.921 9.253-16.191-6.891 3.125-11.686 10.056-11.686 18.115 0 10.981 8.902 19.885 19.885 19.885 10.477 0 19.057-8.106 19.824-18.387-1.61 8.745-9.27 15.373-18.481 15.373z"/>
+<circle cx="19.497" cy="23.161" r="5.006"/>
+<circle cx="6.433" cy="19.749" r="5.008"/>
+<circle cx="8.465" cy="6.832" r="5.008"/>
+<circle cx="14.489" cy="14.743" r="1.888"/>
+<g>
+<path d="m32.618 28.049 2.039-10.796-5.141-15.663h6.046l2.787 10.196 6.673-10.196h6.751l-11.422 15.546-2.081 10.041-5.652 0.872z"/>
+<path d="m56.601 6.537h-9.642l3.765-4.946h21.681s-3.704 2.292-4.248 4.946h-5.901l-4.044 20.64-5.651-0.435 4.04-20.205z"/>
+<path d="m67.63 21.924c1.569 0.941 3.809 1.688 6.243 1.688 2.197 0 4.199-1.021 4.199-3.101 0-1.49-1.138-2.472-3.573-3.728-2.827-1.531-5.496-3.572-5.496-7.027 0-5.34 4.674-8.597 10.442-8.597 3.22 0 5.104 0.706 6.241 1.333l-1.766 4.711c-0.865-0.47-2.748-1.216-4.944-1.177-2.632 0-4.008 1.335-4.008 2.789 0 1.529 1.608 2.472 3.848 3.728 3.22 1.688 5.26 3.847 5.26 6.987 0 5.888-4.869 8.909-10.757 8.909-3.688 0-6.319-0.94-7.575-1.884l1.886-4.631z"/>
+</g>
+<path d="m16.488 35.367c1.144 0.072 30.557-6.929 59.615 0.132 0 0-16.943-6.134-37.771-4.253 0 0 12.188-3.197 38.858 1.588 0 0-26.56-8.367-51.317-1.128-3.655 0.889-10.527 3.59-9.385 3.661z"/>
+<text x="82" y="27.999001" font-family="sans-serif" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="line-height:0%" space="preserve">
+<tspan x="82" y="27.999001" fill="#6ac045" font-family="Arial" font-size="17.5px" font-style="italic" font-weight="bold" style="line-height:125%">.MX</tspan>
+</text>
+</g>
+</svg>
